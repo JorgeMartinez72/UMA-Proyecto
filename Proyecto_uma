@@ -1,0 +1,290 @@
+def calculo_montos(interes, tipo_interes, capital_inicial, tiempo):
+    interes = interes / 100
+    tipo_interes = tipo_interes.lower().strip()
+    if tipo_interes == "compuesto":
+        nip = input("¿Tu interes es efectivo por periodo? ")
+        nip = nip.lower().strip()
+        if nip == "si":
+            monto = (capital_inicial * ((1 + interes) ** tiempo))
+            ganancia = monto - capital_inicial
+            print(f"El monto total es {monto}, la ganancia es de {ganancia}. ")
+            Montos = [(capital_inicial * ((1 + interes) ** periodo)) for periodo in range (tiempo +1)]
+            Periodos = [p for p in range( tiempo + 1)]
+            Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+            dic_grafica = {}
+            dic_grafica["Periodo"] = Periodos
+            dic_grafica["Monto por periodo"] = Montos
+            dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+            print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                           tablefmt='fancy_grid'))
+
+            plt.plot(Periodos, Montos, label="Montos")
+            plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+            plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+            plt.scatter(Periodos, Montos)
+            plt.grid()
+            plt.xlabel("PERIODOS")
+            plt.ylabel("MONTOS")
+            plt.legend(loc="lower right")
+            plt.show()
+            
+        elif nip == "no":
+            tasa_nominal = input("¿Cual es la efectividad de la tasa? ")
+            tasa_nominal == tasa_nominal.lower().strip()
+            conversion = input("¿Cual es su conversion? ")
+            if tasa_nominal == "anual":
+                conversion = conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (((1 + interes) ** (1/4)) - 1)
+                elif conversion  == "mensual":
+                    interes_efectivo = (((1 + interes) ** (1/12)) - 1) 
+                elif conversion == "diaria":
+                    interes_efectivo = (((1 + interes) ** (1/360)) - 1)                    
+                elif conversion == "bimestral":
+                    interes_efectivo = (((1 + interes) ** (1/6)) - 1)    
+                elif conversion =="semestral":
+                    interes_efectivo = (((1 + interes) ** (1/2)) - 1)  
+                else:
+                    raise KeyError("Opcion invalida. Saliendo del programa...")
+                monto = (capital_inicial * (( 1 + interes_efectivo) ** tiempo))
+                ganancia = monto - capital_inicial
+                print(f"El monto total es {monto}, la ganancia es de {ganancia}. ")
+                Montos = [(capital_inicial * ((1 + interes_efectivo) ** periodo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()
+            elif tasa_nominal == "bianual":
+                conversion = conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (((1 + interes) ** (1/8)) - 1)
+                elif conversion  == "mensual":
+                    interes_efectivo = (((1 + interes) ** (1/24)) - 1) 
+                elif conversion == "diaria":
+                    interes_efectivo = (((1 + interes) ** (1/720)) - 1)                    
+                elif conversion == "bimestral":
+                    interes_efectivo = (((1 + interes) ** (1/12)) - 1)    
+                elif conversion =="semestral":
+                    interes_efectivo = (((1 + interes) ** (1/4)) - 1)  
+                else:
+                    raise KeyError("Opcion invalida. Saliendo del programa...")
+                monto = (capital_inicial * (( 1 + interes_efectivo) ** tiempo))
+                ganancia = monto - capital_inicial
+                print(f"El monto total es {monto}, la ganancia es de {ganancia}. ")
+                Montos = [(capital_inicial * ((1 + interes_efectivo) ** periodo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()  
+            elif tasa_nominal == "quinquenal":
+                conversion == conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (((1 + interes) ** (1/20)) - 1)
+                elif conversion  == "mensual":
+                    interes_efectivo = (((1 + interes) ** (1/60)) - 1) 
+                elif conversion == "diaria":
+                    interes_efectivo = (((1 + interes) ** (1/1800)) - 1)                    
+                elif conversion == "bimestral":
+                    interes_efectivo = (((1 + interes) ** (1/30)) - 1)    
+                elif conversion =="semestral":
+                    interes_efectivo = (((1 + interes) ** (1/10)) - 1)        
+                else:
+                    raise KeyError("Opcion invalida. \nSaliendo del programa...")
+                monto = (capital_inicial * (( 1 + interes_efectivo) ** tiempo))
+                ganancia = monto - capital_inicial
+                print(f"El monto total es {monto}, la ganancia es de {ganancia}. ")
+                Montos = [(capital_inicial * ((1 + interes_efectivo) ** periodo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()
+        else:
+             raise KeyError("Opcion invalida. Saliendo del programa...")                                
+    elif tipo_interes == "simple":
+        nip = input("¿Tu interes es efectivo por periodo? ")
+        nip = nip.lower().strip()
+        if nip == "si":
+            monto = (capital_inicial * (1 + (tiempo * interes)))
+            ganancia = monto - capital_inicial
+            print(f"El monto final es: {monto}, tu ganancia es de: {ganancia}")
+            Montos = [capital_inicial * (1 + (periodo * interes)) for periodo in range (tiempo +1)]
+            Periodos = [p for p in range( tiempo + 1)]
+            Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+            dic_grafica = {}
+            dic_grafica["Periodo"] = Periodos
+            dic_grafica["Monto por periodo"] = Montos
+            dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+            print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+            plt.plot(Periodos, Montos, label="Montos")
+            plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+            plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+            plt.scatter(Periodos, Montos)
+            plt.grid()
+            plt.xlabel("PERIODOS")
+            plt.ylabel("MONTOS")
+            plt.legend(loc="lower right")
+            plt.show()
+        elif nip == "no":
+            tasa_nominal = input("¿Cual es la efectividad de la tasa? ")
+            tasa_nominal == tasa_nominal.lower().strip()
+            conversion = input("¿Cual es su conversion? ")
+            if tasa_nominal == "anual":
+                conversion = conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (interes / 4)
+                elif conversion  == "mensual":
+                    interes_efectivo = (interes / 12)
+                elif conversion == "diaria":
+                    interes_efectivo = (interes / 360)                   
+                elif conversion == "bimestral":
+                    interes_efectivo = (interes / 6) 
+                elif conversion =="semestral":
+                    interes_efectivo = (interes / 2) 
+                else:
+                    raise KeyError("Opcion invalida. Saliendo del programa...")                    
+                monto = (capital_inicial * (1+ (tiempo * interes_efectivo)))
+                ganancia = monto - capital_inicial
+                print(f"El monto final es: {monto}, tu ganancia total es de: {ganancia}")
+                Montos = [capital_inicial * (1 + (periodo * interes_efectivo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()
+                
+            elif tasa_nominal == "bianual":
+                conversion = conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (interes / 8)
+                elif conversion  == "mensual":
+                    interes_efectivo = (interes / 24)
+                elif conversion == "diaria":
+                    interes_efectivo = (interes / 720)                    
+                elif conversion == "bimestral":
+                    interes_efectivo = (interes / 24)   
+                elif conversion =="semestral":
+                    interes_efectivo = (interes / 4)
+                else:
+                    raise KeyError("Opcion invalida. Saliendo del programa...")
+                monto = (capital_inicial * (1+ (tiempo * interes_efectivo)))
+                ganancia = monto - capital_inicial
+                print(f"El monto final es: {monto}, tu ganancia total es de: {ganancia}")
+                Montos = [capital_inicial * (1 + (periodo * interes_efectivo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()
+                
+              
+            elif tasa_nominal == "quinquenal":
+                conversion == conversion.lower().strip()
+                if conversion == "trimestral":
+                    interes_efectivo = (interes / 20)
+                elif conversion  == "mensual":
+                    interes_efectivo = (interes / 60)
+                elif conversion == "diaria":
+                    interes_efectivo = (interes / 1800)                   
+                elif conversion == "bimestral":
+                    interes_efectivo = (interes / 30)   
+                elif conversion =="semestral":
+                    interes_efectivo = (interes / 10)   
+                else:
+                    raise KeyError("Opcion invalida. Saliendo del programa...")
+                monto = (capital_inicial * (1+ (tiempo * interes_efectivo)))
+                ganancia = monto - capital_inicial
+                print(f"El monto final es: {monto}, tu ganancia total es de: {ganancia}")
+                Montos = [capital_inicial * (1 + (periodo * interes_efectivo)) for periodo in range (tiempo +1)]
+                Periodos = [p for p in range( tiempo + 1)]
+                Ganancia_por_periodo = [montos - capital_inicial for montos in Montos]
+                dic_grafica = {}
+                dic_grafica["Periodo"] = Periodos
+                dic_grafica["Monto por periodo"] = Montos
+                dic_grafica["Ganancia por periodo"] = Ganancia_por_periodo
+                print(tabulate(dic_grafica,headers=["Periodo", "Monto por periodo", "Ganancia por periodo"],
+                               tablefmt='fancy_grid'))
+
+                plt.plot(Periodos, Montos, label="Montos")
+                plt.plot(Periodos, Ganancia_por_periodo, label = "Ganancias")
+                plt.scatter(Periodos, Ganancia_por_periodo, color="orange")
+                plt.scatter(Periodos, Montos)
+                plt.grid()
+                plt.xlabel("PERIODOS")
+                plt.ylabel("MONTOS")
+                plt.legend(loc="lower right")
+                plt.show()
+            
+            else:
+                raise KeyError(f"la Opcion {tasa_nominal} es  invalida. Saliendo del programa...")
+        else:
+             raise KeyError("Opcion invalida. Saliendo del programa...") 
