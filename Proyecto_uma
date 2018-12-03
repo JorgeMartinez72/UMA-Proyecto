@@ -212,5 +212,5 @@ def calculo_montos(interes, tipo_interes, capital_inicial, tiempo):
             plt.ylabel("MONTOS")
             plt.legend(loc="lower right")
             plt.show()
-    elif grafica == "no":
+    elif grafica == "ninguna":
         pass
